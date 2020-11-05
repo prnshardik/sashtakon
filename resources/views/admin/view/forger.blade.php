@@ -13,7 +13,7 @@
 @section('content')
     <div class="content">
         <div class="brand">
-            <a class="link" href="{{ route('admin') }}">Sashtakon</a>
+            <a class="link" href="{{ route('admin') }}">{{ _setting('site_title') }}</a>
         </div>
         <form id="forgot-form" action="{{ route('admin.reset') }}" method="post">
             <h3 class="m-t-10 m-b-10">Forgot password</h3>

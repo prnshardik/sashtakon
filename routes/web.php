@@ -21,8 +21,17 @@ use Illuminate\Support\Facades\Route;
         
         Route::group(['middleware' => 'auth'], function(){
             Route::get('/', 'DashboardController@index')->name('admin');
-            Route::get('/setting', 'SettingController@index')->name('admin.setting');
-            Route::get('/profile', 'DashboardController@profile')->name('admin.profile');
+
+            /** setting */
+                Route::get('/setting', 'SettingController@index')->name('admin.setting');
+                Route::post('/setting-update', 'SettingController@setting_update')->name('admin.setting.update');
+                Route::post('/setting-logo-update', 'SettingController@setting_logo_update')->name('admin.setting.logo.update');
+            /** setting */
+
+            /** profile */
+                Route::get('/profile', 'DashboardController@profile')->name('admin.profile');
+                Route::get('/change-password', 'DashboardController@change_password')->name('admin.change.password');
+            /** profile */
         });
     });
 /** admin-end */

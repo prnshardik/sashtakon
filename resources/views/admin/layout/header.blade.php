@@ -2,9 +2,9 @@
         <header class="header">
             <div class="page-brand">
                 <a class="link" href="{{ route('admin') }}">
-                    <span class="brand">Sashatakon
+                    <span class="brand">{{ _setting('site_title') }}
                     </span>
-                    <span class="brand-mini">SK</span>
+                    <span class="brand-mini">{{ _setting('site_title_sort_name') }}</span>
                 </a>
             </div>
             <div class="flexbox flex-1">
@@ -140,7 +140,7 @@
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="{{ asset('backend/img/admin-avatar.png') }}" />
-                            <span></span>Admin<i class="fa fa-angle-down m-l-5"></i></a>
+                            <span></span>{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}<i class="fa fa-angle-down m-l-5"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="fa fa-user"></i>Profile</a>
                             <a class="dropdown-item" href="{{ route('admin.setting') }}"><i class="fa fa-cog"></i>Settings</a>

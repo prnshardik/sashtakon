@@ -4,7 +4,7 @@
     <head>        
         @include('admin.layout.auth.meta')
 
-        <title>@yield('title') | Sashtakon</title>
+        <title>@yield('title') | {{ _setting('site_title') }}</title>
 
         @include('admin.layout.auth.styles')
     </head>

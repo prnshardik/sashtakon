@@ -13,7 +13,7 @@
 @section('content')
     <div class="content">
         <div class="brand">
-            <a class="link" href="{{ route('admin') }}">Sashtakon</a>
+            <a class="link" href="{{ route('admin') }}">{{ _setting('site_title') }}</a>
         </div>
         <form id="login-form" action="{{ route('admin.signin') }}" method="post">
             @csrf
@@ -41,12 +41,12 @@
                     @endif
                 </div>
             </div>
-            <!-- <div class="form-group d-flex justify-content-between">
-                <label class="ui-checkbox ui-checkbox-info">
-                    <input type="checkbox">
-                    <span class="input-span"></span>Remember me</label>
+            <div class="form-group d-flex justify-content-between">
+                <!-- <label class="ui-checkbox ui-checkbox-info"> -->
+                    <!-- <input type="checkbox"> -->
+                    <!-- <span class="input-span"></span>Remember me</label> -->
                 <a href="{{ route('admin.forget') }}">Forgot password?</a>
-            </div> -->
+            </div>
             <div class="form-group">
                 <button class="btn btn-info btn-block" type="submit">Login</button>
             </div>

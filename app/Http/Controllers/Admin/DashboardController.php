@@ -19,4 +19,10 @@
             }
         /** profile */
 
+        /** change-password */
+            public function change_password(){
+                dd($request->all());
+            }
+        /** change-password */
+
     }

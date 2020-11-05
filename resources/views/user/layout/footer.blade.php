@@ -48,8 +48,8 @@
                 </div>
             </div>
             <div class="text-center mt-5 pt-4 copyright">
-                <p class="">© 2020 Interior Decor. All rights reserved | Design by
-                <a href="http://www.cypherocean.com"> Cypher Ocean.</a>
+                <p class="">{{ _footer_text() }} | Design and developed by
+                <a href="http://www.cypherocean.com" taget="_blank"> Cypher Ocean.</a>
             </p>
             </div>
         </div>

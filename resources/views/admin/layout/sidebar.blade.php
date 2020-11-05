@@ -6,7 +6,7 @@
                         <img src="{{ asset('backend/img/admin-avatar.png') }}" width="45px" />
                     </div>
                     <div class="admin-info">
-                        <div class="font-strong">James Brown</div><small>Administrator</small></div>
+                        <div class="font-strong">{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</div><small>Administrator</small></div>
                 </div>
                 <ul class="side-menu metismenu">
                     <li>

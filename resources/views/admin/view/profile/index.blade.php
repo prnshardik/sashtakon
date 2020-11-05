@@ -21,8 +21,19 @@
 @section('content')
 	<div class="page-content fade-in-up">
         <div class="row">
-            <div class="col-md-12">
-                
+            <div class="col-lg-12 col-md-12">
+                <div class="ibox">
+                    <div class="ibox-body text-center">
+                        <div class="m-t-20">
+                            <img class="img-circle" src="{{ asset('backend/img/admin-avatar.png') }}">
+                        </div>
+                        <h5 class="font-strong m-b-10 m-t-10">{{ auth()->user()->firstname }} {{ auth()->user()->lastname }}</h5>
+                        <div class="m-b-20 text-muted">Administrator</div>
+                        <div>
+                            <a href="{{ route('admin.change.password') }}" class="btn btn-default btn-rounded m-b-5">Chnage Password</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
