@@ -32,6 +32,16 @@ use Illuminate\Support\Facades\Route;
                 Route::get('/profile', 'DashboardController@profile')->name('admin.profile');
                 Route::get('/change-password', 'DashboardController@change_password')->name('admin.change.password');
             /** profile */
+
+            /** category */
+                Route::get('/category', 'CategoryController@list')->name('admin.category.list');
+                Route::post('/category-lists', 'CategoryController@lists')->name('admin.category.lists');
+                Route::get('/category-add', 'CategoryController@add')->name('admin.category.add');
+                Route::post('/category-insert', 'CategoryController@insert')->name('admin.category.insert');
+                Route::get('/category-edit/{id}', 'CategoryController@edit')->name('admin.category.edit');
+                Route::post('/category-update/{id}', 'CategoryController@update')->name('admin.category.update');
+                Route::get('/category-delete/{id}', 'CategoryController@delete')->name('admin.category.delete');
+            /** category */
         });
     });
 /** admin-end */

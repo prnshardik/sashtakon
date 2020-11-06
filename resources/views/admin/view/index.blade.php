@@ -10,9 +10,17 @@
 @section('styles')
 @endsection
 
+@section('breadcumb_1')
+    <a href="{{ route('admin') }}">Dashboard</a>
+@endsection
+
+@section('breadcumb_2')
+    
+@endsection
+
 @section('content')
     <div class="page-content fade-in-up">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="ibox bg-success color-white widget-stat">
                     <div class="ibox-body">
@@ -503,7 +511,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 @endsection
 

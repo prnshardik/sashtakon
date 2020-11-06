@@ -14,6 +14,12 @@
                             <span class="nav-label">Dashboard</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ route('admin.category.list') }}">
+                            <i class="sidebar-item-icon fa fa-gear"></i>
+                            <span class="nav-label">Categories</span>
+                        </a>
+                    </li>
                     <li class="heading">Settings</li>
                     <li>
                     <li>

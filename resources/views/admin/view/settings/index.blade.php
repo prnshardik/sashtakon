@@ -46,7 +46,7 @@
                                         @foreach($generals as $row)	
         	                            	<div class="form-group">
         	                                    <label>{{ ucwords(str_replace('_', ' ', $row['key'])) }}</label>
-        	                                    <input type="text" name="key" class="form-control" value="{{ $row['value'] }}" placeholder="{{ $row['key'] }}">
+        	                                    <input type="text" name="{{ $row['id'] }}" id="{{ $row['key'] }}" class="form-control" value="{{ $row['value'] }}" placeholder="{{ $row['key'] }}">
         	                                </div>
         	                            @endforeach
                                     @else
@@ -70,7 +70,7 @@
                                         @foreach($smtps as $row) 
                                             <div class="form-group">
                                                 <label>{{ ucwords(str_replace('_', ' ', $row['key'])) }}</label>
-                                                <input type="text" name="key" class="form-control" value="{{ $row['value'] }}" placeholder="{{ $row['key'] }}">
+                                                <input type="text" name="{{ $row['id'] }}" id="{{ $row['key'] }}" class="form-control" value="{{ $row['value'] }}" placeholder="{{ $row['key'] }}">
                                             </div>
                                         @endforeach
                                     @else
@@ -90,11 +90,18 @@
                             <div class="tab-pane" id="logo">
                                 <form action="{{ route('admin.setting.logo.update') }}" method="post" enctype="multipart/form-data">
                                     @csrf
-                                    @if(!empty($logos))
-                                        @foreach($logos as $row) 
-                                            <div class="form-group">
-                                                <label>{{ ucwords(str_replace('_', ' ', $row['key'])) }}</label>
-                                                <input type="text" name="key" class="form-control" value="{{ $row['value'] }}" placeholder="{{ $row['key'] }}">
+                                    @if(!empty($logos) && isset($logos) && count($logos) > 0)
+                                        @foreach($logos as $row)
+                                            <div class="form-row m-1">
+                                                <div class="col-md-8 mb-3">
+                                                    <label for="{{ $row['key'] }}">{{ ucwords(str_replace('_', ' ', $row['key'])) }}</label>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control dropify" id="{{ $row['key'] }}" name="{{ $row['key'] }}" data-show-remove="false" data-default-file="{{ $row['value'] }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 mb-3">
+                                                    <img src="{{ $row['value'] }}" style="height: 100px; width: 100px;">
+                                                </div>
                                             </div>
                                         @endforeach
                                     @else

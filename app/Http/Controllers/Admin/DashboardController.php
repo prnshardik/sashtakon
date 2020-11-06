@@ -20,7 +20,7 @@
         /** profile */
 
         /** change-password */
-            public function change_password(){
+            public function change_password(Request $request){
                 dd($request->all());
             }
         /** change-password */
