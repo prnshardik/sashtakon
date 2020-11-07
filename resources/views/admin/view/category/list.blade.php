@@ -16,8 +16,6 @@
 @endsection
 
 @section('styles')
-    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -50,14 +48,12 @@
 @endsection
 
 @section('page-scripts')
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
 @endsection
 
 @section('scripts')
     <script type="text/javascript">
         $(function () {
-            
             var table = $('#data-table').DataTable({
                 processing: true,
                 serverSide: true,
@@ -87,5 +83,31 @@
             });
             
           });
+    </script>
+
+    <script type="text/javascript">
+        function delete_record(object){
+            var status = $(object).data("status");
+            var id = $(object).data("id");
+            
+            $.ajax({
+                "url": "{!! route('admin.category.delete') !!}",
+                "dataType": "json",
+                "type": "POST",
+                "data": {
+                    id: id,
+                    status: status,
+                    _token: "{{csrf_token()}}"
+                },
+                success: function (response){
+                    if(response.status == "success"){
+                        list_table_one.ajax.reload(null, false); //reload datatable ajax
+                        toastr.success('Deleted successfully', 'Success');
+                    }else{
+                        toastr.error('something went wrong', 'Error');
+                    }
+                }
+            });
+        }
     </script>
 @endsection

@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
                 Route::post('/category-insert', 'CategoryController@insert')->name('admin.category.insert');
                 Route::get('/category-edit/{id}', 'CategoryController@edit')->name('admin.category.edit');
                 Route::post('/category-update/{id}', 'CategoryController@update')->name('admin.category.update');
-                Route::get('/category-delete/{id}', 'CategoryController@delete')->name('admin.category.delete');
+                Route::get('/category-delete', 'CategoryController@delete')->name('admin.category.delete');
             /** category */
         });
     });

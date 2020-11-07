@@ -35,8 +35,10 @@
                         <div class="ibox-title">
                             @if(!empty($id))
                                 Update category
+                                @php $formAction = route('admin.category.update', $id); @endphp
                             @else
                                 Add category
+                                @php $formAction = route('admin.category.insert'); @endphp
                             @endif
                         </div>
                         <div class="ibox-title">
@@ -44,7 +46,22 @@
                         </div>
                     </div>
                     <div class="ibox-body">
-                        crud
+                        <form action="{{ $formAction }}" method="post" id="crud_form" enctype="multipart/form-data" >
+                            @csrf
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name" id="name" class="form-control" value="{{ @old('name', $row->name) }}" placeholder="Name">
+                                @error('name')
+                                    <span class="invalid-feedback" style="display: block;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary" type="submit">Save</button>
+                                <a href="{{ route('admin.category.list') }}" class="btn btn-danger float-right">Cancel</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -57,4 +74,43 @@
 @endsection
 
 @section('scripts')
+    <script type="text/javascript">
+        $("#crud_form").validate({
+            errorElement: "div",
+            errorClass: 'invalid-feedback',
+            errorPlacement: function (error, element){
+                error.insertAfter(element);
+            },
+            ignore: "",
+            rules: {
+                name: {
+                    required: true
+                }
+            },
+            messages: {
+                name: {
+                    required: 'Please enter name.'
+                }
+            },
+            invalidHandler: function (event, validator){
+                //successHandler1.hide();
+                //errorHandler1.show();
+            },
+            highlight: function (element){
+                $(element).closest('.help-block').removeClass('valid');
+                $(element).closest('.form-group').removeClass('has-success').addClass('has-error').find('.symbol').removeClass('ok').addClass('required');
+            },
+            unhighlight: function (element){
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+            success: function (label, element){
+                label.addClass('help-block valid');
+                $(element).closest('.form-group').removeClass('has-error').addClass('has-success').find('.symbol').removeClass('required').addClass('ok');
+            },
+            submitHandler: function (frmadd){
+                successHandler1.show();
+                errorHandler1.hide();
+            }
+        });
+    </script>
 @endsection

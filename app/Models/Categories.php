@@ -9,4 +9,6 @@
 	    use HasFactory;
 
 	    protected $table = 'categories';
+
+	    protected $fillable = ['name'];
 	}

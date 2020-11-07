@@ -11,6 +11,10 @@
 
 <!-- PAGE LEVEL STYLES-->
 
+<link href="{{ asset('backend/css/toastr.css') }}" rel="stylesheet" />
+
+<link href="{{ asset('backend/css/datatable/datatable.min.css') }}" rel="stylesheet" />
+
 @yield('page-styles')
 
 @yield('styles')
