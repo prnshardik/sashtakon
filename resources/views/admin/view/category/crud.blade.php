@@ -45,12 +45,13 @@
                             <a href="{{ route('admin.category.list') }}" class="btn btn-primary btn-sm" >Categories</a>
                         </div>
                     </div>
+
                     <div class="ibox-body">
                         <form action="{{ $formAction }}" method="post" id="crud_form" enctype="multipart/form-data" >
                             @csrf
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{ @old('name', $row->name) }}" placeholder="Name">
+                                <input type="text" name="name" id="name" class="form-control" value="{{ @old('name', $data->name) }}" placeholder="Name">
                                 @error('name')
                                     <span class="invalid-feedback" style="display: block;">
                                         <strong>{{ $message }}</strong>

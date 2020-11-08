@@ -53,41 +53,50 @@
 
 @section('scripts')
     <script type="text/javascript">
-        $(function () {
-            var table = $('#data-table').DataTable({
-                processing: true,
-                serverSide: true,
-                "ajax": {
-                    "url": "{{ route('admin.category.lists') }}",
-                    "type": "POST",
-                    "data": {
-                        _token: "{{ csrf_token() }}"
-                    }
-                },
-                columns: [
-                    {
-                        data: 'DT_RowIndex', 
-                        name: 'DT_RowIndex'
+        var data_table;
+        $(document).ready(function(){
+            if($('#data-table').length > 0){
+                data_table = $('#data-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    "responsive": true,
+                    "aaSorting": [],
+                    "ajax": {
+                        "url": "{{ route('admin.category.lists') }}",
+                        "type": "POST",
+                        "data": {
+                            _token: "{{ csrf_token() }}"
+                        }
                     },
-                    {
-                        data: 'name', 
-                        name: 'name'
-                    },
-                    {
-                        data: 'action', 
-                        name: 'action', 
-                        orderable: true, 
-                        searchable: true
-                    }
-                ]
-            });
-            
-          });
-    </script>
+                    "columnDefs": [
+                        {
+                            "targets": [0], //first column / numbering column
+                            "orderable": false, //set not orderable
+                        },
+                    ],
+                    columns: [
+                        {
+                            data: 'DT_RowIndex', 
+                            name: 'DT_RowIndex',
+                            orderable: false,
+                            sortable:false
+                        },
+                        {
+                            data: 'name', 
+                            name: 'name'
+                        },
+                        {
+                            data: 'action', 
+                            name: 'action', 
+                            orderable: true, 
+                            searchable: true
+                        }
+                    ]
+                });    
+            }
+        });
 
-    <script type="text/javascript">
         function delete_record(object){
-            var status = $(object).data("status");
             var id = $(object).data("id");
             
             $.ajax({
@@ -96,12 +105,11 @@
                 "type": "POST",
                 "data": {
                     id: id,
-                    status: status,
                     _token: "{{csrf_token()}}"
                 },
                 success: function (response){
-                    if(response.status == "success"){
-                        list_table_one.ajax.reload(null, false); //reload datatable ajax
+                    if(response.code == "200"){
+                        data_table.ajax.reload(null, false); //reload datatable ajax
                         toastr.success('Deleted successfully', 'Success');
                     }else{
                         toastr.error('something went wrong', 'Error');

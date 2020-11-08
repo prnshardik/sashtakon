@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Route;
 /** admin-start */
 
     Route::namespace('Admin')->prefix('admin')->group(function () {
-        Route::get('login', 'AuthController@login')->name('admin.login');
-        Route::post('signin', 'AuthController@signin')->name('admin.signin');
-        Route::get('forget', 'AuthController@forget')->name('admin.forget');
-        Route::post('reset', 'AuthController@reset')->name('admin.reset');
+        Route::group(['middleware' => 'guest'], function(){ 
+            Route::get('login', 'AuthController@login')->name('admin.login');
+            Route::post('signin', 'AuthController@signin')->name('admin.signin');
+            Route::get('forget', 'AuthController@forget')->name('admin.forget');
+            Route::post('reset', 'AuthController@reset')->name('admin.reset');
+            Route::post('reset_password', 'AuthController@reset_password')->name('admin.reset_password');
+        });
 
         Route::get('logout', 'AuthController@logout')->name('admin.logout');
         
@@ -40,7 +43,7 @@ use Illuminate\Support\Facades\Route;
                 Route::post('/category-insert', 'CategoryController@insert')->name('admin.category.insert');
                 Route::get('/category-edit/{id}', 'CategoryController@edit')->name('admin.category.edit');
                 Route::post('/category-update/{id}', 'CategoryController@update')->name('admin.category.update');
-                Route::get('/category-delete', 'CategoryController@delete')->name('admin.category.delete');
+                Route::post('/category-delete', 'CategoryController@delete')->name('admin.category.delete');
             /** category */
         });
     });

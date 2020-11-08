@@ -21,9 +21,9 @@
 
 	            return Datatables::of($data)
 			            ->addIndexColumn()
-		                ->addColumn('action', function($row){
-		                    $btn = '<a href="'.route('admin-category-edit', ['id' => base64_encode($data->id)]).'" class="edit btn btn-success btn-sm"><i class="fas fa-pencil"></i></a>
-		                    		<a href="javascript:void(0);" class="delete btn btn-danger btn-sm" onclick="delete_record(this);" data-id="'.base64_encode($data->id).'" ><i class="fas fa-trash"></i></a>';
+		                ->addColumn('action', function($data){
+		                    $btn = '<a href="'.route('admin.category.edit', ['id' => base64_encode($data->id)]).'" class="edit btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+		                    		<a href="javascript:void(0);" class="delete btn btn-danger btn-sm" onclick="delete_record(this);" data-id="'.base64_encode($data->id).'" ><i class="fa fa-trash"></i></a>';
 		                    return $btn;
 		                })
 		                ->rawColumns(['action'])
@@ -61,13 +61,31 @@
 
 	    /** edit */
 	    	public function edit(Request $request, $id){
-				return view('admin.view.category.crud');    		
+	    		$id = base64_decode($id);
+	    		$data = Categories::find($id);
+
+				return view('admin.view.category.crud', ['data' => $data, 'id' => $id]);    		
 	    	}
 	    /** edit */
 
 	    /** update */
 	    	public function update(Request $request, $id){
-	    		
+	    		$this->validate(request(), [
+                    'name' => ['required', 'string', 'max:255']
+                ]);
+
+                $crud = array(
+                    'name' => ucfirst($request->name),
+                    'updated_at' => date('Y-m-d H:i:s')
+                );
+        
+                $update = Categories::where(['id' => $id])->update($crud);
+        
+                if($id){
+					return redirect()->route('admin.category.list')->with('success', 'Record updated successfully.');
+                }else{
+                	return redirect()->back()->with('error', 'Failed to updated record.')->withInput();
+                }		
 	    	}
 	    /** update */
 
@@ -79,8 +97,8 @@
         
                 if(!empty($request->all())){
                     $id = base64_decode($request->id);
-        
-                    $delete = Categories::delete($id);
+
+                    $delete = Categories::where(['id' => $id])->delete();
         
                     if($delete){
                         return json_encode(['code' => 200]);

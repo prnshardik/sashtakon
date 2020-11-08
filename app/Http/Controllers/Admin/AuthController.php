@@ -6,6 +6,7 @@
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Validator;
     use Hash, Auth;
+    use App\Models\User;
 
     class AuthController extends Controller{
         
@@ -47,6 +48,28 @@
 
         /** reset */
             public function reset(Request $request){
+                $validator = Validator::make($request->all(), [
+                    'email' => 'required|email'
+                ]);
+
+                if($validator->fails()) {
+                    return redirect()->back()->withErrors($validator)->withInput();
+                }
+
+                $email = $request->email;
+
+                $user = User::where(['email' => $email])->first();
+
+                if(!$user){
+                    return redirect()->back()->withErrors(['email' => 'Please enter correct email']);
+                }else{
+                    dd($user);    
+                }            
+            }
+        /** reset */
+
+        /** reset */
+            public function reset_password(Request $request){
                 dd($request->all());
             }
         /** reset */
@@ -57,6 +80,4 @@
                 return redirect()->route('admin.login');
             }
         /** logout */
-
-
     }

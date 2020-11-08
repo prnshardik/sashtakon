@@ -6,22 +6,21 @@
 <script src="{{ asset('backend/vendors/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
 
 <!-- PAGE LEVEL PLUGINS-->
-<script src="{{ asset('backend/vendors/chart.js/dist/Chart.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backend/vendors/chart.js/dist/Chart.min.js') }}" type="text/javas<!-- cript"></script>
 <script src="{{ asset('backend/vendors/jvectormap/jquery-jvectormap-2.0.3.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('backend/vendors/jvectormap/jquery-jvectormap-world-mill-en.js') }}" type="text/javascript"></script>
-<script src="{{ asset('backend/vendors/jvectormap/jquery-jvectormap-us-aea-en.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backend/vendors/jvectormap/jquery-jvectormap-us-aea-en.js') }}" type="text/javascript"></script> -->
 
 <!-- CORE SCRIPTS-->
 <script src="{{ asset('backend/js/app.min.js') }}" type="text/javascript"></script>
 
 <!-- PAGE LEVEL SCRIPTS-->
-<script src="{{ asset('backend/js/scripts/dashboard_1_demo.js') }}" type="text/javascript"></script>
+<!-- <script src="{{ asset('backend/js/scripts/dashboard_1_demo.js') }}" type="text/javascript"></script> -->
 
 <script src="{{ asset('backend/js/jquery-validation/jquery.validate.js') }}"></script>
 <script src="{{ asset('backend/js/jquery-validation/additional-methods.js') }}"></script>
 
 <script src="{{ asset('backend/js/datatable/datatable.min.js') }}"></script>
-
 <script src="{{ asset('backend/js/toastr.js') }}" type="text/javascript"></script>
 
 <script>
