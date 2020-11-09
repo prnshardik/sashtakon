@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 /** user-start */
 
 /** admin-start */
-
     Route::namespace('Admin')->prefix('admin')->group(function () {
         Route::group(['middleware' => 'guest'], function(){ 
             Route::get('login', 'AuthController@login')->name('admin.login');
@@ -45,6 +44,8 @@ use Illuminate\Support\Facades\Route;
                 Route::post('/category-update/{id}', 'CategoryController@update')->name('admin.category.update');
                 Route::post('/category-delete', 'CategoryController@delete')->name('admin.category.delete');
             /** category */
+
+            
         });
     });
 /** admin-end */
