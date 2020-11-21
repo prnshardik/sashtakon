@@ -10,14 +10,21 @@
                 </div>
                 <ul class="side-menu metismenu">
                     <li>
-                        <a class="active" href="{{ route('admin') }}"><i class="sidebar-item-icon fa fa-th-large"></i>
+                        <a class="active" href="{{ route('admin') }}">
+                            <i class="sidebar-item-icon fa fa-th-large"></i>
                             <span class="nav-label">Dashboard</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.category.list') }}">
                             <i class="sidebar-item-icon fa fa-gear"></i>
-                            <span class="nav-label active">Categories</span>
+                            <span class="nav-label">Categories</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.product.list') }}">
+                            <i class="sidebar-item-icon fa fa-gear"></i>
+                            <span class="nav-label">Products</span>
                         </a>
                     </li>
                     <li class="heading">Settings</li>

@@ -15,6 +15,7 @@
         {
             Schema::create('products', function (Blueprint $table) {
                 $table->id();
+                $table->integer('category_id');
                 $table->string('name');
                 $table->string('sort_description')->nullable();
                 $table->string('description')->nullable();

@@ -58,6 +58,61 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label>Sort Description</label>
+                                <input type="text" name="sort_description" id="sort_description" class="form-control" value="{{ @old('sort_description', $data->sort_description) }}" placeholder="Name">
+                                @error('sort_description')
+                                    <span class="invalid-feedback" style="display: block;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="description" name="description" class="form-control" >{{ @old('description', $data->description) }}</textarea>
+                                @error('description')
+                                    <span class="invalid-feedback" style="display: block;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select name="category_id" id="category_id" class="form-control">
+                                    <option value="">select category</option>
+                                    @if($categories->isNotEmpty())
+                                        @foreach($categories as $row)
+                                            <option value="{{ $row->id }}" @if(isset($data) && $data->category_id == $row->id) selected @endif>{{ $row->name }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                                @error('category_id')
+                                    <span class="invalid-feedback" style="display: block;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Is Featured Image</label>
+                                <select name="is_featured" id="is_featured" class="form-control">
+                                    <option value="N" @if(isset($data) && $data->is_featured == 'N') selected @endif>No</option>
+                                    <option value="Y" @if(isset($data) && $data->is_featured == 'Y') selected @endif>Yes</option>
+                                </select>
+                                @error('is_featured')
+                                    <span class="invalid-feedback" style="display: block;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input type="file" name="image" class="form-control">
+                                @error('image')
+                                    <span class="invalid-feedback" style="display: block;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary" type="submit">Save</button>
                                 <a href="{{ route('admin.product.list') }}" class="btn btn-danger float-right">Cancel</a>
@@ -86,11 +141,29 @@
             rules: {
                 name: {
                     required: true
+                },
+                sort_description: {
+                    required: true
+                },
+                description: {
+                    required: true
+                },
+                category_id: {
+                    required: true
                 }
             },
             messages: {
                 name: {
                     required: 'Please enter name.'
+                },
+                sort_description: {
+                    required: 'Please enter sort description.'
+                },
+                description: {
+                    required: 'Please enter description.'
+                },
+                category_id: {
+                    required: 'Please select category.'
                 }
             },
             invalidHandler: function (event, validator){

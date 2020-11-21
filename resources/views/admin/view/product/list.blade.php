@@ -34,8 +34,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
                                     <th>Action</th>
+                                    <th>Category</th>
+                                    <th>Is Featured Product</th>
+                                    <th>Name</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -84,6 +86,14 @@
                         {
                             data: 'name', 
                             name: 'name'
+                        },
+                        {
+                            data: 'category_name', 
+                            name: 'category_name'
+                        },
+                        {
+                            data: 'is_featured', 
+                            name: 'is_featured'
                         },
                         {
                             data: 'action', 
