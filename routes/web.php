@@ -45,6 +45,16 @@ use Illuminate\Support\Facades\Route;
                 Route::post('/category-delete', 'CategoryController@delete')->name('admin.category.delete');
             /** category */
 
+            /** product */
+                Route::get('/product', 'ProductController@list')->name('admin.product.list');
+                Route::post('/product-lists', 'ProductController@lists')->name('admin.product.lists');
+                Route::get('/product-add', 'ProductController@add')->name('admin.product.add');
+                Route::post('/product-insert', 'ProductController@insert')->name('admin.product.insert');
+                Route::get('/product-edit/{id}', 'ProductController@edit')->name('admin.product.edit');
+                Route::post('/product-update/{id}', 'ProductController@update')->name('admin.product.update');
+                Route::post('/product-delete', 'ProductController@delete')->name('admin.product.delete');
+            /** product */
+
             
         });
     });
