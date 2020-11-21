@@ -17,21 +17,21 @@
                     <li>
                         <a href="{{ route('admin.category.list') }}">
                             <i class="sidebar-item-icon fa fa-gear"></i>
-                            <span class="nav-label">Categories</span>
+                            <span class="nav-label active">Categories</span>
                         </a>
                     </li>
                     <li class="heading">Settings</li>
                     <li>
                     <li>
-                        <a href="{{ route('admin.setting') }}">
-                            <i class="sidebar-item-icon fa fa-gear"></i>
-                            <span class="nav-label">Setting</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('admin.profile') }}">
                             <i class="sidebar-item-icon fa fa-user"></i>
                             <span class="nav-label">Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.setting') }}">
+                            <i class="sidebar-item-icon fa fa-gear"></i>
+                            <span class="nav-label">Setting</span>
                         </a>
                     </li>
                     <!-- <li class="heading">FEATURES</li>
