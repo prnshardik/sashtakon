@@ -11,7 +11,6 @@
 	    
 	    /** index */
 	    	public function index(Request $request){
-
 	    		$logo_url = url('/').'/uploads/logo/';
 
 	    		$generals = Setting::where(['type' => 'general'])->get()->toArray();

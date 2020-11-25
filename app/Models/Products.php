@@ -10,5 +10,5 @@
 
 	    protected $table = 'products';
 
-	    protected $fillable = ['name', 'category_id', 'sort_description', 'description', 'status', 'is_featured'];
+	    protected $fillable = ['name', 'category_id', 'sort_description', 'description', 'image', 'status', 'is_featured'];
 	}

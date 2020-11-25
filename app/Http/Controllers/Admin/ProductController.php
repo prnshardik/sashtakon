@@ -73,11 +73,11 @@
 
                 if(!empty($request->file('image'))){
                     $file = $request->file('image');
+                    
                     $filenameWithExtension = $request->file('image')->getClientOriginalName();
                     $filename = pathinfo($filenameWithExtension, PATHINFO_FILENAME);
                     $extension = $request->file('image')->getClientOriginalExtension();
                     $filenameToStore = time()."_".$filename.'.'.$extension;
-
                     $folder_to_upload = public_path().'/uploads/product/';
 
                     if (!\File::exists($folder_to_upload)) {
@@ -88,9 +88,13 @@
                 }else{
                     $crud["image"] = 'default.png';
                 }
+
+                if($request->is_featured == 'Y'){
+                    Products::where(['category_id' => $request->category_id])->update(['is_featured' => 'N', 'updated_at' => date('Y-m-d H:i:s')]);
+                }
         
                 $last_id = Products::create($crud)->id;
-        
+                
                 if($last_id > 0){
                 	if(!empty($request->file('image'))){
                         $file->move("uploads/product/", $filenameToStore);
@@ -104,9 +108,14 @@
 
 	    /** edit */
 	    	public function edit(Request $request, $id){
-	    		$id = base64_decode($id);
+                $id = base64_decode($id);
+                $product_url = url('/').'/uploads/product/';
 	    		$categories = Categories::select('id', 'name')->get();
-	    		$data = Products::find($id);
+                $data = Products::select('id', 'category_id', 'name', 'sort_description', 'description',
+                                            \DB::Raw("CONCAT(".'"'.$product_url.'"'.", ".'image'.") as image")
+                                        )
+                                    ->where(['id' => $id])
+                                    ->first();
 
 				return view('admin.view.product.crud', ['data' => $data, 'id' => $id, 'categories' => $categories]);    		
 	    	}
@@ -150,11 +159,15 @@
                 }else{
                     $crud["image"] = $exst_rec->profile;
                 }
+
+                if($request->is_featured == 'Y'){
+                    Products::where(['category_id' => $request->category_id])->update(['is_featured' => 'N', 'updated_at' => date('Y-m-d H:i:s')]);
+                }
         
                 $update = Products::where(['id' => $id])->update($crud);
         
-                if($id){
-                	if(!empty($request->file('profile'))){
+                if($update){
+                	if(!empty($request->file('image'))){
                         $file->move("uploads/product/", $filenameToStore);
                     }
 					return redirect()->route('admin.product.list')->with('success', 'Record updated successfully.');

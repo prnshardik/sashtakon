@@ -13,6 +13,8 @@
 @endsection
 
 @section('page-styles')
+    <link href="{{ asset('backend/css/dropify.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/css/sweetalert2.bundle.css') }}" rel="stylesheet">
 @endsection
 
 @section('styles')
@@ -92,15 +94,10 @@
                                     @csrf
                                     @if(!empty($logos) && isset($logos) && count($logos) > 0)
                                         @foreach($logos as $row)
-                                            <div class="form-row m-1">
-                                                <div class="col-md-8 mb-3">
-                                                    <label for="{{ $row['key'] }}">{{ ucwords(str_replace('_', ' ', $row['key'])) }}</label>
-                                                    <div class="input-group">
-                                                        <input type="file" class="form-control dropify" id="{{ $row['key'] }}" name="{{ $row['key'] }}" data-show-remove="false" data-default-file="{{ $row['value'] }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 mb-3">
-                                                    <img src="{{ $row['value'] }}" style="height: 100px; width: 100px;">
+                                            <div class="col-sm-12 mb-3">
+                                                <label for="{{ $row['key'] }}">{{ ucwords(str_replace('_', ' ', $row['key'])) }}</label>
+                                                <div class="input-group">
+                                                    <input type="file" name="{{ $row['key'] }}" class="form-control dropify" id="{{ $row['key'] }}" data-default-file="{{ $row['value'] ?? '' }}" data-show-remove="false" >
                                                 </div>
                                             </div>
                                         @endforeach
@@ -126,10 +123,16 @@
     </div>
 @endsection
 
-
 @section('page-scripts')
+    <script src="{{ asset('backend/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('backend/js/promise.min.js') }}"></script>
+    <script src="{{ asset('backend/js/sweetalert2.bundle.js') }}"></script>
 @endsection
 
 @section('scripts')
-    
+    <script>
+        $(document).ready(function(){
+            $('.dropify').dropify();
+        });
+    </script>
 @endsection

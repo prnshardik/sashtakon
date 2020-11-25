@@ -21,6 +21,8 @@
 @endsection
 
 @section('page-styles')
+    <link href="{{ asset('backend/css/dropify.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/css/sweetalert2.bundle.css') }}" rel="stylesheet">
 @endsection
 
 @section('styles')
@@ -106,7 +108,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Image</label>
-                                <input type="file" name="image" class="form-control">
+                                <input type="file" name="image" class="form-control dropify" data-default-file="{{ $data->image ?? '' }}" data-show-remove="false">
                                 @error('image')
                                     <span class="invalid-feedback" style="display: block;">
                                         <strong>{{ $message }}</strong>
@@ -127,9 +129,16 @@
 
 
 @section('page-scripts')
+    <script src="{{ asset('backend/js/dropify.min.js') }}"></script>
+    <script src="{{ asset('backend/js/promise.min.js') }}"></script>
+    <script src="{{ asset('backend/js/sweetalert2.bundle.js') }}"></script>
 @endsection
 
 @section('scripts')
+    <script>
+        $('.dropify').dropify();
+    </script>
+
     <script type="text/javascript">
         $("#crud_form").validate({
             errorElement: "div",
