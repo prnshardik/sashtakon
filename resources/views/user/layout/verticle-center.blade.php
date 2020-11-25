@@ -14,7 +14,6 @@
                 Sed mattis risus at ipsum elementum, ut auctor turpis cursus.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save Changes</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

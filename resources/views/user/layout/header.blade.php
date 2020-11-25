@@ -24,25 +24,39 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto text-center">
-                    <li class="nav-item">
-                        <a class="nav-link  active" href="{{ route('user') }}">Home
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link scroll" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link scroll" href="#furniture">Furniture</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Products Page</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
+                @php $route = Route::getCurrentRoute()->getName(); @endphp
+                @if($route == 'user.product')
+                    <ul class="navbar-nav mx-auto text-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user') }}">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ route('user.product') }}">Products Page</a>
+                        </li>
+                    </ul>
+                @else
+                    <ul class="navbar-nav mx-auto text-center">
+                        <li class="nav-item">
+                            <a class="nav-link  active" href="{{ route('user') }}">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll" href="#furniture">Furniture</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.product') }}">Products Page</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link scroll" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                @endif
             </div>
         </nav>
     </div>

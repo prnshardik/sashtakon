@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 /** user-start */
     Route::namespace('User')->group(function () {
         Route::get('/', 'UserController@index')->name('user');
+        Route::get('product', 'UserController@product')->name('user.product');
+        Route::post('subscribe', 'UserController@subscribe')->name('user.subscribe');
+        Route::post('contact-us', 'UserController@contact_us')->name('user.contact_us');
     });    
 /** user-start */
 
@@ -53,9 +56,7 @@ use Illuminate\Support\Facades\Route;
                 Route::get('/product-edit/{id}', 'ProductController@edit')->name('admin.product.edit');
                 Route::post('/product-update/{id}', 'ProductController@update')->name('admin.product.update');
                 Route::post('/product-delete', 'ProductController@delete')->name('admin.product.delete');
-            /** product */
-
-            
+            /** product */  
         });
     });
 /** admin-end */

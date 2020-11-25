@@ -17,7 +17,7 @@
                 <div class="banner-text">
                     <div class="slider-info text-center">
                         <div class="agileinfo-logo">
-                            <h2> Interior Technology </h2>
+                            <h2> {{ _setting('site_title') }} Technology </h2>
                         </div>
                         <h3 class="txt-w3_agile"> Decorating Ideas for your House</h3>
                     </div>
@@ -141,7 +141,7 @@
             <div class="container py-lg-5">
                 <h3 class="heading mb-5 text-center">Our Furniture</h3>
                 <div class="row product-grids">
-                    <div class="col-lg-8">
+                    <!-- <div class="col-lg-8">
                         <div class="row bg-light p-md-5 p-3">
                             <div class="col-md-4 p-0">
                                 <img src="{{ asset('frontend/images/s2.png') }}" class="mt-4 img-fluid" alt="" />
@@ -177,15 +177,26 @@
                             <h4 class="mb-1">Product Name</h4>
                             <h5 class="pb-3">$210</h5>
                         </div>
-                    </div>
-                    
-                    <div class="col-lg-4 col-md-6 mt-5">
-                        <div class="bg-light text-center">
-                            <img src="{{ asset('frontend/images/s5.png') }}" class="img-fluid" alt="" />
-                            <h4 class="mb-1">Product Name</h4>
-                            <h5 class="pb-3">$210</h5>
+                    </div> -->
+                    @if(isset($data) && !empty($data))
+                        @foreach($data as $row)
+                            <div class="col-lg-4 col-md-6 mt-5">
+                                <div class="bg-light text-center">
+                                    <img src="{{ $row->image ?? '' }}" class="img-fluid" alt="" />
+                                    <h4 class="mb-1">{{ $row->name ?? '' }}</h4>
+                                    <h6 class="pb-3">{{ $row->sort_description ?? '' }}</h6>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="col-lg-4 col-md-6 mt-5">
+                            <div class="bg-light text-center">
+                                <img src="{{ asset('frontend/images/s5.png') }}" class="img-fluid" alt="" />
+                                <h4 class="mb-1">Product Name</h4>
+                                <h5 class="pb-3">$210</h5>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </section>
@@ -205,33 +216,65 @@
                         <h3 class="mb-4">Get in touch</h3>
                         <p class="mb-4">Donec malesuada ex sit amet pretium sid ornare. Nulla congue scelerisque tellus, utpretium. Mauris suscipit nisi.</p>
                         <h3 class="mb-4">Subscribe</h3>
-                        <form action="#" method="post" class="subscribe">
-                            <input type="email" name="Email" placeholder="Enter your email..." required="">
+                        <form action="{{ route('user.subscribe') }}" method="post" class="subscribe">
+                            @csrf
+                            <input type="email" name="email" id="email" placeholder="Enter your email..." required="">
+                            @error('email')
+                                <span class="invalid-feedback" style="display: block;">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                             <input type="submit" value="Subscribe">
                         </form>
                     </div>
                     <div class="col-lg-8 agileinfo_mail_grid_right mt-lg-0 mt-5">
-                        <form action="#" method="post">
+                        <form action="{{ route('user.contact_us') }}" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6 wthree_contact_left_grid pr-md-0">
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control" placeholder="Name" required="">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{ @old('name') }}" required="">
+                                        @error('name')
+                                            <span class="invalid-feedback" style="display: block;">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control" placeholder="Email" required="">
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" value="{{ @old('email') }}" required="">
+                                        @error('email')
+                                            <span class="invalid-feedback" style="display: block;">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6 wthree_contact_left_grid">
                                     <div class="form-group">
-                                        <input type="text" name="phone number" class="form-control" placeholder="Phone Number" required="">
+                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone Number" value="{{ @old('phone') }}" required="">
+                                        @error('phone')
+                                            <span class="invalid-feedback" style="display: block;">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" name="subject" class="form-control" placeholder="Subject" required="">
+                                        <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject" value="{{ @old('subject') }}" required="">
+                                        @error('subject')
+                                            <span class="invalid-feedback" style="display: block;">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea name="message" placeholder="Message" class="form-control" required=""></textarea>
+                                <textarea name="message" placeholder="Message" class="form-control" required="">{{ @old('message') }}</textarea>
+                                @error('message')
+                                    <span class="invalid-feedback" style="display: block;">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="submit-buttons text-center">
                                 <input type="submit" value="Submit">

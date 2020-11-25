@@ -33,9 +33,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active" href="#general" data-toggle="tab">General</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" href="#smtp" data-toggle="tab">SMTP</a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link" href="#logo" data-toggle="tab">Logo</a>
                             </li>
@@ -65,7 +65,7 @@
                                     </div>
                                 </form>
                            	</div>
-                            <div class="tab-pane" id="smtp">
+                            <!-- <div class="tab-pane" id="smtp">
                             	<form action="{{ route('admin.setting.update') }}" method="post">
                                     @csrf
                                     @if(!empty($smtps))
@@ -88,7 +88,7 @@
                                         </div>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                             <div class="tab-pane" id="logo">
                                 <form action="{{ route('admin.setting.logo.update') }}" method="post" enctype="multipart/form-data">
                                     @csrf

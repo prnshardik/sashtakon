@@ -4,7 +4,7 @@
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
 
-    class CreateProductsTable extends Migration
+    class CreateContactusTable extends Migration
     {
         /**
          * Run the migrations.
@@ -13,15 +13,13 @@
          */
         public function up()
         {
-            Schema::create('products', function (Blueprint $table) {
+            Schema::create('contactus', function (Blueprint $table) {
                 $table->id();
-                $table->integer('category_id');
                 $table->string('name');
-                $table->string('sort_description')->nullable();
-                $table->text('description')->nullable();
-                $table->text('image')->nullable();
-                $table->enum('is_featured', ['Y','N'])->default('N');
-                $table->enum('status', ['Y', 'N'])->default('Y');
+                $table->string('phone');
+                $table->string('email');
+                $table->string('subject');
+                $table->text('message');
                 $table->timestamps();
             });
         }
@@ -33,6 +31,6 @@
          */
         public function down()
         {
-            Schema::dropIfExists('products');
+            Schema::dropIfExists('contactus');
         }
     }
