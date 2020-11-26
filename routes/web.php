@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Route;
         Route::post('subscribe', 'UserController@subscribe')->name('user.subscribe');
         Route::post('contact-us', 'UserController@contact_us')->name('user.contact_us');
 
-        Route::post('terms', 'UserController@terms')->name('user.terms');
-        Route::post('privacy', 'UserController@privacy')->name('user.privacy');
-        Route::post('licence', 'UserController@licence')->name('user.licence');
+        Route::get('terms', 'UserController@terms')->name('user.terms');
+        Route::get('privacy', 'UserController@privacy')->name('user.privacy');
+        Route::get('licence', 'UserController@licence')->name('user.licence');
     });    
 /** user-start */
 
