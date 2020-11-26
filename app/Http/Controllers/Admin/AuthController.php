@@ -8,7 +8,7 @@
     use Hash, Auth, Mail;
     use App\Models\User;
     use App\Models\Email_templates;
-
+    use DB;
 
     class AuthController extends Controller{
         
@@ -44,7 +44,7 @@
 
         /** forget */
             public function forget(Request $request){
-                return view('admin.view.forger');
+                return view('admin.view.forget');
             }
         /** forget */
 
@@ -67,54 +67,81 @@
                 }else{
                     $token = md5(time());
         
-                    $link = route('reset-password', ['token' => $token, 'email_token' => base64_encode($user->email), 'user_token' => base64_encode($user->id)]);
+                    $link = route('admin.reset_password', ['token' => $token, 'email_token' => base64_encode($user->email), 'user_token' => base64_encode($user->id)]);
                     $time = date("Y-m-d H:i:s", strtotime('+1 hours'));
     
                     $crud = array(
-                        'user_id' => $user->id,
+                        'email' => $request->email,
                         'token' => $token,
-                        'expire_time' => $time,
                         'created_at' => date('Y-m-d H:i:s')
                     );
     
-                    DB::table('reset_password')->insert($crud);
-    
-                    $logo_url = _get_site_logo('header_logo');
-                    $footer_text = _footer_text();
-    
-                    $content = (object)[];
-                    $content->obj_name = $user->first_name.' '.$user->last_name;
-                    $content->obj_link = $link;
-    
-                    $body_content = _email_template('forget_password', $content);
-                    
-                    // $send_mail_from = _setting('site_mail_email');
-                    // $admin_recieve_mail = _setting('mail_send_signup');
-    
-                    // $content->body = _header_footer($logo_url, $body_content->email_title, $body_content->html, $footer_text);
-                    // $content->to = $request->email;
-                    // $content->from = $send_mail_from;
-                    // $content->subject = $body_content->email_subject;
-                    
-                    // $content = (array)$content;
-                    
-                    // Mail::send([], [], function ($message) use ($content) {
-                    //     $message->to($content['to'])
-                    //         ->from($content['from'])
-                    //         ->subject($content['subject'])
-                    //         ->setBody($content['body'], 'text/html');
-                    // });
-    
+                    DB::table('password_resets')->insert($crud);
+
                     return redirect()->back()->with(['success' => "We have sent you a reset password link to your registered email id."]);    
                 }            
             }
         /** reset */
 
-        /** reset */
+        /** reset-password */
             public function reset_password(Request $request){
-                dd($request->all());
+                if(!isset($request->token) || !isset($request->email)){
+                    return redirect()->back()->with(['error' => "Something went wrong."]);
+                }
+
+                $token = $request->token;
+                $email = base64_decode($request->email);
+    
+                $data = DB::table('reset_password')
+                                ->select('*')
+                                ->where('token', $token)
+                                ->where('email', $email)
+                                ->first();
+                        
+                if(!empty($data)){
+                    $data = ['code' => '200', 'data' => $email, 'id' => $user_token];
+                    return view("front.views.auth.reset_password", compact('data'));
+                }else{
+                    $data = ['code' => '201', 'data' => 'Something went wrong.'];
+                    return view("admin.view.reset", compact('data'));
+                }
             }
-        /** reset */
+        /** reset-password */
+
+        /** password-reset */
+            public function password_reset(Request $request){
+                $this->validate($request, [
+                    'id' => 'required',
+                    'password' => 'required|min:7',
+                    'confirm_password' => 'required|same:password'
+                ], [
+                    'password.min' => 'The new password must be at least 7 characters.',
+                    'confirm_password.same' => 'The confirm password and new password must match.'
+                ]);
+
+                $id = $request->id;
+                $password = $request->password;
+                $confirm_password = $request->confirm_password;
+                
+                $user = DB::table('users')->select('users.*')->where('id', $id)->first();
+
+                if(Hash::check(trim($password), $user->password)){
+                    return redirect()->back()->with('error', 'New password cant be same as old password.');
+                }else{
+                    $delete = \DB::table('reset_password')->where('user_id', $id)->delete();
+        
+                    if($delete){
+                        $crud = array('password' => Hash::make(trim($password)), 'updated_at' => date('Y-m-d H:i:s'));
+
+                        DB::table('users')->where('id', $id)->limit(1)->update($crud);
+
+                        return redirect()->route('admin.login')->with(['success' => "Your password has been updated."]);
+                    }else{
+                        return redirect()->back()->with('error', 'Something went wrong.');
+                    }
+                }
+            }
+        /** password-reset */
 
         /** logout */
             public function logout(){

@@ -38,4 +38,16 @@
 @endsection
 
 @section('scripts')
+    <script>
+        var success = "{{ session()->has('success') ? session()->get('success') : '' }}";
+        var error = "{{ session()->has('error') ? session()->get('error') : '' }}";
+        
+        if (success.length > 0) {
+            toastr.success(success, 'Success');
+        }
+        
+        if (error.length > 0) {
+            toastr.error(error, 'Error');
+        }
+    </script>
 @endsection

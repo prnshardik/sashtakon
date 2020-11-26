@@ -6,3 +6,7 @@
 <link href="{{ asset('frontend/css/toastr.css') }}" rel="stylesheet" />
 
 <link href="{{ asset('frontend/css/datatable/datatable.min.css') }}" rel="stylesheet" />
+
+@yield('page-styles')
+
+@yield('styles')

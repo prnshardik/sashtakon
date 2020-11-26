@@ -10,7 +10,7 @@
                     <p class="my-2">
                         <span class="fas mr-2 fa-envelope-open"></span> 
                         <!-- <a href="mailto:info@example.com">info@example.com</a> -->
-                        <a href="#">info@sashtakon.com</a>
+                        <a href="mail:info@sashtakon.com">info@sashtakon.com</a>
                     </p>
                     <p>
                         <span class="fas mr-2 fa-phone-volume"></span> 
@@ -20,13 +20,13 @@
                 <div class="col-lg-3 mt-md-0 mt-5 col-md-6">
                     <h4 class="mb-4">Company links</h4>
                     <p>
-                        <a href="#">Terms and Conditions</a>
+                        <a href="{{ route('user.terms') }}">Terms and Conditions</a>
                     </p>
                     <p>
-                        <a href="#">Privacy Policy</a>
+                        <a href="{{ route('user.privacy') }}">Privacy Policy</a>
                     </p>
                     <p>
-                        <a href="#">License Aggrement</a>
+                        <a href="{{ route('user.licence') }}">License Aggrement</a>
                     </p>
                 </div>
                 <div class="col-lg-6 mt-lg-0 mt-5 brands">

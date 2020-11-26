@@ -39,20 +39,33 @@
             }
         /** index-dashboard */
 
-        /** index-dashboard */
+        /** product */
             public function product(){
                 $data = [];
                 $product_url = url('/').'/uploads/product/';
-                
-                $data = Products::select('id', 'category_id', 'name', 'description',
-                                        \DB::Raw("SUBSTRING(".'sort_description'.", 1, 25) as sort_description"),
-                                        \DB::Raw("CONCAT(".'"'.$product_url.'"'.", ".'image'.") as image")
-                                    )
-                                    ->get();
-                
-                return view('user.view.product', ['data' => $data]);
+                $categories = Categories::all();
+
+                if($categories->isNotEmpty()){
+                    foreach($categories as $row){                        
+                        $product = Products::select('id', 'category_id', 'name', 'description',
+                                                    \DB::Raw("SUBSTRING(".'sort_description'.", 1, 25) as sort_description"),
+                                                    \DB::Raw("CONCAT(".'"'.$product_url.'"'.", ".'image'.") as image")
+                                                )
+                                            ->where(function ($query) {
+                                                    $query->where('is_featured', '=', 'Y')
+                                                        ->orWhere('is_featured', '=', 'N');
+                                            })
+                                            ->where(['category_id' => $row->id])
+                                            ->get();
+                        
+                        if(!empty($product))
+                            $row->products = $product;
+                    }
+                }
+
+                return view('user.view.product', ['data' => $categories]);
             }
-        /** index-dashboard */
+        /** $categories */
 
         /** subscribe */
             public function subscribe(Request $request){
@@ -105,5 +118,23 @@
                 }
             }
         /** contact-us */
+
+        /** terms */
+            public function terms(){
+                return view('user.view.terms');
+            }
+        /** terms */
+
+        /** privacy */
+            public function privacy(){
+                return view('user.view.privacy');
+            }
+        /** privacy */
+
+        /** licence */
+            public function licence(){
+                return view('user.view.licence');
+            }
+        /** licence */
 
     }

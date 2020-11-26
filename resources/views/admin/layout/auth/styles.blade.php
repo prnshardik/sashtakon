@@ -7,7 +7,7 @@
 <link href="{{ asset('backend/css/main.min.css') }}" rel="stylesheet" />
 
 <link href="{{ asset('backend/css/pages/auth-light.css') }}" rel="stylesheet" />
-
+<link href="{{ asset('backend/css/toastr.css') }}" rel="stylesheet" />
 <!-- PAGE LEVEL STYLES-->
 
 @yield('page-styles')
