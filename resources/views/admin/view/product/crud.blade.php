@@ -9,14 +9,14 @@
 @endsection
 
 @section('breadcumb_1')
-    <a href="{{ route('admin.product.list') }}">Products</a>
+    <a href="{{ route('admin.product.list') }}">Portfolio</a>
 @endsection
 
 @section('breadcumb_2')
     @if(!empty($id))
-        Update product
+        Update portfolio
     @else
-        Add product
+        Add portfolio
     @endif
 @endsection
 
@@ -36,15 +36,15 @@
                     <div class="ibox-head">
                         <div class="ibox-title">
                             @if(!empty($id))
-                                Update product
+                                Update portfolio
                                 @php $formAction = route('admin.product.update', $id); @endphp
                             @else
-                                Add product
+                                Add portfolio
                                 @php $formAction = route('admin.product.insert'); @endphp
                             @endif
                         </div>
                         <div class="ibox-title">
-                            <a href="{{ route('admin.product.list') }}" class="btn btn-primary btn-sm" >Products</a>
+                            <a href="{{ route('admin.product.list') }}" class="btn btn-primary btn-sm" >Portfolio</a>
                         </div>
                     </div>
 

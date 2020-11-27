@@ -53,15 +53,28 @@ use Illuminate\Support\Facades\Route;
                 Route::post('/category-delete', 'CategoryController@delete')->name('admin.category.delete');
             /** category */
 
-            /** product */
-                Route::get('/product', 'ProductController@list')->name('admin.product.list');
-                Route::post('/product-lists', 'ProductController@lists')->name('admin.product.lists');
-                Route::get('/product-add', 'ProductController@add')->name('admin.product.add');
-                Route::post('/product-insert', 'ProductController@insert')->name('admin.product.insert');
-                Route::get('/product-edit/{id}', 'ProductController@edit')->name('admin.product.edit');
-                Route::post('/product-update/{id}', 'ProductController@update')->name('admin.product.update');
-                Route::post('/product-delete', 'ProductController@delete')->name('admin.product.delete');
-            /** product */  
+            /** contact */
+                Route::get('/contact', 'ContactController@list')->name('admin.contact.list');
+                Route::post('/contact-lists', 'ContactController@lists')->name('admin.contact.lists');
+                Route::get('/contact-view/{id}', 'ContactController@view')->name('admin.contact.view');
+            /** contact */
+
+            /** notification */
+                Route::get('admin/notification/list', 'NotificationController@list')->name('admin.notification.list');
+                Route::post('admin/notification/lists', 'NotificationController@lists')->name('admin.notification.lists');    
+                Route::post('admin/notification/clear', 'NotificationController@clear')->name('admin.notification.clear');
+                Route::post('admin/notification/clear_one', 'NotificationController@clear_one')->name('admin.notification.clear-one');
+            /** notification */
+
+            /** portfolio */
+                Route::get('/portfolio', 'ProductController@list')->name('admin.product.list');
+                Route::post('/portfolio-lists', 'ProductController@lists')->name('admin.product.lists');
+                Route::get('/portfolio-add', 'ProductController@add')->name('admin.product.add');
+                Route::post('/portfolio-insert', 'ProductController@insert')->name('admin.product.insert');
+                Route::get('/portfolio-edit/{id}', 'ProductController@edit')->name('admin.product.edit');
+                Route::post('/portfolio-update/{id}', 'ProductController@update')->name('admin.product.update');
+                Route::post('/portfolio-delete', 'ProductController@delete')->name('admin.product.delete');
+            /** portfolio */  
         });
     });
 /** admin-end */

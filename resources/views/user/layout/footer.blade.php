@@ -49,8 +49,8 @@
             </div>
             <div class="text-center mt-5 pt-4 copyright">
                 <p class="">{{ _footer_text() }} | Design and developed by
-                <a href="http://www.cypherocean.com" taget="_blank"> Cypher Ocean.</a>
-            </p>
+                    <a href="http://www.cypherocean.com" taget="_blank"> Cypher Ocean.</a>
+                </p>
             </div>
         </div>
     </footer>

@@ -23,7 +23,7 @@
 
             \DB::table('settings')->insert(['key' => 'site_title', 'value' => 'Sashtakon', 'status' => 'Y', 'type' => 'general']);
             \DB::table('settings')->insert(['key' => 'site_title_sort_name', 'value' => 'S', 'status' => 'Y', 'type' => 'general']);
-            \DB::table('settings')->insert(['key' => 'footer_title', 'value' => 'Sashtakon. All rights reserved by Shshtakon', 'status' => 'Y', 'type' => 'general']);
+            \DB::table('settings')->insert(['key' => 'footer_title', 'value' => 'Sashtakon. All rights reserved by Sashtakon', 'status' => 'Y', 'type' => 'general']);
 
             \DB::table('settings')->insert(['key' => 'header_logo', 'value' => 'default.png', 'status' => 'Y', 'type' => 'logo']);
             \DB::table('settings')->insert(['key' => 'footer_logo', 'value' => 'default.png', 'status' => 'Y', 'type' => 'logo']);

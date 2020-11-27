@@ -33,7 +33,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{ route('user.product') }}">Products Page</a>
+                            <a class="nav-link active" href="{{ route('user.product') }}">Portfolio</a>
                         </li>
                     </ul>
                 @else
@@ -50,7 +50,7 @@
                             <a class="nav-link scroll" href="#furniture">Furniture</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.product') }}">Products Page</a>
+                            <a class="nav-link" href="{{ route('user.product') }}">Portfolio</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link scroll" href="#contact">Contact</a>

@@ -17,14 +17,26 @@
                     </li>
                     <li>
                         <a href="{{ route('admin.category.list') }}">
-                            <i class="sidebar-item-icon fa fa-gear"></i>
+                            <i class="sidebar-item-icon fa fa-bars"></i>
                             <span class="nav-label">Categories</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.product.list') }}">
-                            <i class="sidebar-item-icon fa fa-gear"></i>
-                            <span class="nav-label">Products</span>
+                            <i class="sidebar-item-icon fa fa-file"></i>
+                            <span class="nav-label">Portfolio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.contact.list') }}">
+                            <i class="sidebar-item-icon fa fa-address-book"></i>
+                            <span class="nav-label">ContactUs</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.notification.list') }}">
+                            <i class="sidebar-item-icon fa fa-bell"></i>
+                            <span class="nav-label">Notification</span>
                         </a>
                     </li>
                     <li class="heading">Settings</li>

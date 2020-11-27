@@ -1,15 +1,15 @@
 @extends('admin.layout.app')
 
 @section('title')
-    Portfolio lists
+    Notifications lists
 @endsection
 
 @section('breadcumb_1')
-    <a href="{{ route('admin.product.list') }}">Portfolio</a>
+    <a href="{{ route('admin.notification.list') }}">Notifications</a>
 @endsection
 
 @section('breadcumb_2')
-    lists
+    Lists
 @endsection
 
 @section('page-styles')
@@ -24,19 +24,15 @@
             <div class="col-md-12">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title">Portfolio lists</div>
-                        <div class="ibox-title">
-                            <a href="{{ route('admin.product.add') }}" class="btn btn-primary btn-sm" >Add Portfolio</a>
-                        </div>
+                        <div class="ibox-title">Notifications Lists</div>
                     </div>
                     <div class="ibox-body">
                         <table id="data-table" class="table table-bordered yajra-datatable">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Action</th>
-                                    <th>Category</th>
-                                    <th>Is Featured Product</th>
+                                    <th>Notification</th>
+                                    <th>Link</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -50,11 +46,10 @@
 @endsection
 
 @section('page-scripts')
-
 @endsection
 
 @section('scripts')
-    <script type="text/javascript">
+<script type="text/javascript">
         var data_table;
         $(document).ready(function(){
             if($('#data-table').length > 0){
@@ -64,7 +59,7 @@
                     "responsive": true,
                     "aaSorting": [],
                     "ajax": {
-                        "url": "{{ route('admin.product.lists') }}",
+                        "url": "{{ route('admin.notification.lists') }}",
                         "type": "POST",
                         "data": {
                             _token: "{{ csrf_token() }}"
@@ -84,16 +79,12 @@
                             sortable:false
                         },
                         {
-                            data: 'name', 
-                            name: 'name'
+                            data: 'notification', 
+                            name: 'notification'
                         },
                         {
-                            data: 'category_name', 
-                            name: 'category_name'
-                        },
-                        {
-                            data: 'is_featured', 
-                            name: 'is_featured'
+                            data: 'link', 
+                            name: 'link'
                         },
                         {
                             data: 'action', 
@@ -105,27 +96,5 @@
                 });    
             }
         });
-
-        function delete_record(object){
-            var id = $(object).data("id");
-            
-            $.ajax({
-                "url": "{!! route('admin.product.delete') !!}",
-                "dataType": "json",
-                "type": "POST",
-                "data": {
-                    id: id,
-                    _token: "{{csrf_token()}}"
-                },
-                success: function (response){
-                    if(response.code == "200"){
-                        data_table.ajax.reload(null, false); //reload datatable ajax
-                        toastr.success('Deleted successfully', 'Success');
-                    }else{
-                        toastr.error('something went wrong', 'Error');
-                    }
-                }
-            });
-        }
     </script>
 @endsection

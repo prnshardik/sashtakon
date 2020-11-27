@@ -1,7 +1,7 @@
 @extends('user.layout.app')
 
 @section('title')
-    Products
+    Portfolio
 @endsection
 
 @section('page-styles')
@@ -57,7 +57,7 @@
     <!-- services -->
         <section class="services py-5" id="furniture">
             <div class="container py-lg-5">
-                <h3 class="heading mb-5 text-center">Our Furniture</h3>
+                <h3 class="heading mb-5 text-center">Our Portfolio</h3>
                 <div class="row product-grids">
                     <ul class="portfolio-categ filter">
                         <li class="all active"><a href="#">All</a></li>

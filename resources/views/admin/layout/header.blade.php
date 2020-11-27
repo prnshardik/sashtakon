@@ -85,58 +85,61 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
+                    @php
+                        $ary = _notificaiton();
+                        $notifications = $ary['notifications'];
+                        $count = 0;
+                        if(!empty($ary['notifications_count'])){
+                            $count = count($ary['notifications_count']);
+                        }
+                    @endphp
                     <li class="dropdown dropdown-notification">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell-o rel"><span class="notify-signal"></span></i></a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bell-o rel">
+                                @if($count != 0)
+                                    <span class="notify-signal"></span>
+                                @endif
+                            </i>
+                        </a>
                         <ul class="dropdown-menu dropdown-menu-right dropdown-menu-media">
                             <li class="dropdown-menu-header">
                                 <div>
-                                    <span><strong>5 New</strong> Notifications</span>
-                                    <a class="pull-right" href="javascript:;">view all</a>
+                                    <span>Notifications</span>
+                                    <a class="pull-right" href="{{ route('admin.notification.list') }}">view all</a>
                                 </div>
                             </li>
-                            <li class="list-group list-group-divider scroller" data-height="240px" data-color="#71808f">
+                            <li class="list-group list-group-divider scroller" data-height="240px" style="height: auto;" data-color="#71808f">
                                 <div>
-                                    <a class="list-group-item">
-                                        <div class="media">
-                                            <div class="media-img">
-                                                <span class="badge badge-success badge-big"><i class="fa fa-check"></i></span>
+                                    @if(!empty($notifications) && $notifications != null)
+                                        @foreach($notifications as $row)
+                                            <a class="list-group-item clear_one_notification" data-id="{{ $row->id }}" data-url="{{ $row->link }}">
+                                                <div class="media">
+                                                    <div class="media-img">
+                                                        <span class="badge badge-success badge-big">
+                                                            <i class="fa fa-bell"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="font-13">{{ $row->notification }}</div>
+                                                        <small class="text-muted">{{ $row->ago }} ago</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        @endforeach
+                                    @else
+                                        <a class="list-group-item" href="javascript:void(0);">
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <div class="font-13">No Notification</div>
+                                                </div>
                                             </div>
-                                            <div class="media-body">
-                                                <div class="font-13">4 task compiled</div><small class="text-muted">22 mins</small></div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item">
-                                        <div class="media">
-                                            <div class="media-img">
-                                                <span class="badge badge-default badge-big"><i class="fa fa-shopping-basket"></i></span>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="font-13">You have 12 new orders</div><small class="text-muted">40 mins</small></div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item">
-                                        <div class="media">
-                                            <div class="media-img">
-                                                <span class="badge badge-danger badge-big"><i class="fa fa-bolt"></i></span>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="font-13">Server #7 rebooted</div><small class="text-muted">2 hrs</small></div>
-                                        </div>
-                                    </a>
-                                    <a class="list-group-item">
-                                        <div class="media">
-                                            <div class="media-img">
-                                                <span class="badge badge-success badge-big"><i class="fa fa-user"></i></span>
-                                            </div>
-                                            <div class="media-body">
-                                                <div class="font-13">New user registered</div><small class="text-muted">2 hrs</small></div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    @endif
                                 </div>
                             </li>
                         </ul>
-                    </li> -->
+                    </li>
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
                             <img src="{{ asset('backend/img/admin-avatar.png') }}" />

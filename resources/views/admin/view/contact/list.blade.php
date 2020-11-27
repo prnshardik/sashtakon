@@ -1,11 +1,11 @@
 @extends('admin.layout.app')
 
 @section('title')
-    Portfolio lists
+    ContactUs lists
 @endsection
 
 @section('breadcumb_1')
-    <a href="{{ route('admin.product.list') }}">Portfolio</a>
+    <a href="{{ route('admin.contact.list') }}">ContactUs</a>
 @endsection
 
 @section('breadcumb_2')
@@ -24,19 +24,18 @@
             <div class="col-md-12">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title">Portfolio lists</div>
-                        <div class="ibox-title">
-                            <a href="{{ route('admin.product.add') }}" class="btn btn-primary btn-sm" >Add Portfolio</a>
-                        </div>
+                        <div class="ibox-title">ContactUs lists</div>
                     </div>
                     <div class="ibox-body">
                         <table id="data-table" class="table table-bordered yajra-datatable">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Action</th>
-                                    <th>Category</th>
-                                    <th>Is Featured Product</th>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -64,7 +63,7 @@
                     "responsive": true,
                     "aaSorting": [],
                     "ajax": {
-                        "url": "{{ route('admin.product.lists') }}",
+                        "url": "{{ route('admin.contact.lists') }}",
                         "type": "POST",
                         "data": {
                             _token: "{{ csrf_token() }}"
@@ -88,12 +87,20 @@
                             name: 'name'
                         },
                         {
-                            data: 'category_name', 
-                            name: 'category_name'
+                            data: 'phone', 
+                            name: 'phone'
                         },
                         {
-                            data: 'is_featured', 
-                            name: 'is_featured'
+                            data: 'email', 
+                            name: 'email'
+                        },
+                        {
+                            data: 'subject', 
+                            name: 'subject'
+                        },
+                        {
+                            data: 'message', 
+                            name: 'subject'
                         },
                         {
                             data: 'action', 
@@ -105,27 +112,5 @@
                 });    
             }
         });
-
-        function delete_record(object){
-            var id = $(object).data("id");
-            
-            $.ajax({
-                "url": "{!! route('admin.product.delete') !!}",
-                "dataType": "json",
-                "type": "POST",
-                "data": {
-                    id: id,
-                    _token: "{{csrf_token()}}"
-                },
-                success: function (response){
-                    if(response.code == "200"){
-                        data_table.ajax.reload(null, false); //reload datatable ajax
-                        toastr.success('Deleted successfully', 'Success');
-                    }else{
-                        toastr.error('something went wrong', 'Error');
-                    }
-                }
-            });
-        }
     </script>
 @endsection
