@@ -45,7 +45,7 @@
                 <!-- <label class="ui-checkbox ui-checkbox-info"> -->
                     <!-- <input type="checkbox"> -->
                     <!-- <span class="input-span"></span>Remember me</label> -->
-                <a href="{{ route('admin.forget') }}">Forgot password?</a>
+                <!-- <a href="{{ route('admin.forget') }}">Forgot password?</a> -->
             </div>
             <div class="form-group">
                 <button class="btn btn-info btn-block" type="submit">Login</button>

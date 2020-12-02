@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-    <!-- banner -->
+    <!-- banner --> 
 
     <!-- banner bottom -->
         <section class="banner-bottom py-5" id="about">

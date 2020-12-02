@@ -143,7 +143,7 @@
 					$today = \DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
 					foreach($noti as $r){
 						$to_date = \DateTime::createFromFormat('Y-m-d H:i:s', $r->created_at);
-						$r->ago = day_diff_from_current($today, $to_date);
+						$r->ago = _day_diff_from_current($today, $to_date);
 					}
 				}
 				
@@ -155,8 +155,8 @@
 	/** notificaiton */
 
 	/** day-diffrent */
-		if (!function_exists('day_diff_from_current')) {
-			function day_diff_from_current($date1, $date2){
+		if (!function_exists('_day_diff_from_current')) {
+			function _day_diff_from_current($date1, $date2){
 				$interval = $date1->diff($date2);
 				if($interval->invert == 1){
 					$diff = ' ';

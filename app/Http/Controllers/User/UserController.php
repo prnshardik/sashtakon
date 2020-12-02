@@ -112,6 +112,17 @@
                 $last_id = ContactUs::create($crud)->id;
         
                 if($last_id > 0){
+
+                    $notiCrud = [
+                                    'notification' => $request->name.' filled contect form',
+                                    'link' => 'link',
+                                    'is_read' => 'N',
+                                    'created_at' => date('Y-m-d H:i:s'),
+                                    'updated_at' => date('Y-m-d H:i:s')
+                                ];
+
+                    \DB::table('notification')->insert($notiCrud);
+
                     return redirect()->back()->with('success', 'Thank you for contact us.');
                 }else{
                     return redirect()->back()->with('error', 'Something went wrong..')->withInput();
